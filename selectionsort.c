@@ -45,7 +45,7 @@ void vectorPrint(Node* vector){
 }
 
 Node* vectorGenRandom(int size, int max){
-    Node* vector;
+    Node* vector = NULL;
     
     srand(time(NULL));
     
@@ -106,7 +106,7 @@ void vectorTest(Node* vector){
 }
 
 int main() {
-    Node* vector;
+    Node* vector = NULL;
     if(INPUT){
         int size, max;
         printf("Vector size: ");
