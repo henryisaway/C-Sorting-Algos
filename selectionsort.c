@@ -17,55 +17,55 @@ Node* createNode(int key){
     return node;
 }
 
-Node* vectorInsert(Node* vector, int key){
+Node* listInsert(Node* list, int key){
     Node* node = createNode(key);
 
-    // If vector is empty just return new node
-    if(vector == NULL){
+    // If list is empty just return new node
+    if(list == NULL){
         return node;
     }
     
-    // If vector is not empty
-    Node* temp = vector;
+    // If list is not empty
+    Node* temp = list;
     // Go to last node
     while(temp->next != NULL){
         temp = temp->next;
     }
-    temp->next = node;  // Attach node to the end of the vector
+    temp->next = node;  // Attach node to the end of the list
     
-    return vector;
+    return list;
 }
 
-void vectorPrint(Node* vector){
-    Node* temp = vector;
+void listPrint(Node* list){
+    Node* temp = list;
     while(temp != NULL){
         printf("%d\n", temp->key);
         temp = temp->next;
     }
 }
 
-Node* vectorGenRandom(int size, int max){
-    Node* vector = NULL;
+Node* listGenRandom(int size, int max){
+    Node* list = NULL;
     
     srand(time(NULL));
     
     for(int i = 0; i < size; i++){
         int key = rand() % max + 1;
-        vector = vectorInsert(vector, key);
+        list = listInsert(list, key);
     }
     
-    return vector;
+    return list;
 }
 
-Node* vectorSelectionSort(Node* vector){
-    Node* temp = vector;
+Node* listSelectionSort(Node* list){
+    Node* temp = list;
     Node* temp2 = temp->next;
     Node* min = temp;
     int current = temp->key;
     
-    // If vector length is 1, it is already ordered.
+    // If list length is 1, it is already ordered.
     if(temp2 == NULL){
-        return vector;
+        return list;
     }
     
     
@@ -89,11 +89,11 @@ Node* vectorSelectionSort(Node* vector){
         temp = temp->next;
     }
     
-    return vector;
+    return list;
 }
 
-void vectorTest(Node* vector){
-    Node* temp = vector;
+void listTest(Node* list){
+    Node* temp = list;
     while(temp->next != NULL){
         if(temp->next->key < temp->key){
             printf("Test failed!\n");
@@ -106,26 +106,26 @@ void vectorTest(Node* vector){
 }
 
 int main() {
-    Node* vector = NULL;
+    Node* list = NULL;
     if(INPUT){
         int size, max;
-        printf("Vector size: ");
+        printf("list size: ");
         scanf("%d", &size);
         printf("Max value: ");
         scanf("%d", &max);
         printf("--------------------------\n");
-        vector = vectorGenRandom(size, max);
+        list = listGenRandom(size, max);
     } else{
-        vector = vectorGenRandom(10, 1000);
+        list = listGenRandom(10, 1000);
     }
     
-    printf("Initial vector:\n");
-    vectorPrint(vector);
+    printf("Initial list:\n");
+    listPrint(list);
     printf("---------------\n");
-    vector = vectorSelectionSort(vector);
+    list = listSelectionSort(list);
 
-    printf("---------------\nFinal vector:\n");
-    vectorPrint(vector);
-    vectorTest(vector);
+    printf("---------------\nFinal list:\n");
+    listPrint(list);
+    listTest(list);
     return 0;
 }
